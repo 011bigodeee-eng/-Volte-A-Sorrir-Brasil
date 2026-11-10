@@ -1,3 +1,5 @@
+import { images } from "./images";
+
 export const clinic = {
   name: "Volte a Sorrir Brasil",
   phone: "(98) 98427-8547",
@@ -15,6 +17,7 @@ export function whatsappUrl(message = appointmentMessage) {
 export const treatments = [
   {
     id: "implantes",
+    image: images.implantes,
     short: "Implantes",
     title: "Implantes dentários",
     label: "Um novo ponto de partida",
@@ -28,6 +31,7 @@ export const treatments = [
   },
   {
     id: "proteses",
+    image: images.proteses,
     short: "Próteses",
     title: "Próteses dentárias",
     label: "Cuidado que reconstrói",
@@ -40,6 +44,7 @@ export const treatments = [
   },
   {
     id: "dentaduras",
+    image: images.dentaduras,
     short: "Dentaduras",
     title: "Dentaduras",
     label: "Para os pequenos grandes momentos",
@@ -53,6 +58,7 @@ export const treatments = [
   },
   {
     id: "ortodontia",
+    image: images.ortodontia,
     short: "Ortodontia",
     title: "Aparelhos ortodônticos",
     label: "Cada sorriso, um planejamento",
@@ -62,7 +68,7 @@ export const treatments = [
       "O exame clínico e, quando necessários, exames complementares ajudam a avaliar a mordida. O tipo de aparelho e o acompanhamento dependem do planejamento profissional.",
     message:
       "Olá! Gostaria de informações sobre aparelhos ortodônticos e agendar uma avaliação.",
-    alt: "Modelo odontológico ilustrativo com aparelho ortodôntico metálico",
+    alt: "Imagem ilustrativa em detalhe de uma boca com aparelho ortodôntico metálico, sem mostrar o rosto",
   },
 ];
 export const faqs = [

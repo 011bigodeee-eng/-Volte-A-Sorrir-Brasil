@@ -14,13 +14,19 @@ As quatro artes foram preservadas como material complementar, fora das imagens p
 
 ## Ilustrações geradas neste trabalho
 
-Geradas com a ferramenta de imagem disponível nesta sessão e exportadas localmente em WebP:
+Geradas individualmente com a ferramenta de imagem desta sessão e exportadas em WebP com qualidade 93. As imagens exibidas na página utilizam o otimizador do Next.js com qualidade 90, tamanhos responsivos e carregamento sob demanda abaixo da primeira dobra.
 
-- `hero-retrato.webp` e `sorriso-retrato.webp`: retratos ilustrativos, 1122 × 1402, sem identificação com pacientes reais ou resultados de tratamentos.
-- `cuidado.webp`: atendimento odontológico ilustrativo, gerado por IA; não representa profissionais, pacientes ou instalações reais da clínica.
-- `implantes.webp`, `proteses.webp`, `dentaduras.webp` e `ortodontia.webp`: quatro painéis independentes de uma composição odontológica gerada (508 × 508 por arquivo). Representações educativas; não constituem planejamento clínico nem casos reais.
+- `sorriso-natural-hd.webp`: sorriso natural em macro, somente boca, lábios e dentes; 1448 × 1086.
+- `sorriso-confianca-hd.webp`: segundo detalhe de sorriso natural, sem rosto ou retrato; 1448 × 1086.
+- `avaliacao-bucal-hd.webp`: boca em detalhe com espelho dental e mão enluvada, sem mostrar paciente ou profissional de corpo/rosto; 1448 × 1086.
+- `implantes-hd.webp`: representação educativa de implante com coroa, conexão e estrutura óssea; 1254 × 1254.
+- `proteses-hd.webp`: representação de prótese parcial removível; 1254 × 1254.
+- `dentaduras-hd.webp`: representação de próteses totais; 1254 × 1254.
+- `ortodontia-hd.webp`: detalhe de boca com aparelho ortodôntico, sem rosto; 1254 × 1254.
 
-A página sinaliza a natureza ilustrativa e a geração por IA. As imagens odontológicas devem ser revisadas pelo responsável técnico antes da publicação definitiva.
+Os antigos retratos e as imagens menores de 508 × 508 foram removidos de `public/images`. Nenhuma imagem representa a equipe, instalações, pacientes ou resultados clínicos reais da Volte a Sorrir Brasil. A página mantém a identificação de imagens ilustrativas geradas por IA. As representações odontológicas devem ser revisadas pelo responsável técnico antes da publicação definitiva.
+
+Os recursos são importados estaticamente em `src/lib/images.ts`: o Next.js lê as dimensões reais e gera URLs com hash de conteúdo, evitando reaproveitar imagens antigas do cache. As proporções dos blocos de sorriso e atendimento preservam a boca completa no desktop e no mobile.
 
 ## Fontes e ícones
 

@@ -224,10 +224,10 @@ export function TreatmentExplorer() {
             <div className="explorer-image">
               <Image
                 key={t.id}
-                src={`/images/${t.id}.webp`}
+                src={t.image}
                 alt={t.alt}
-                width={508}
-                height={508}
+                quality={90}
+                placeholder="blur"
                 sizes="(max-width: 600px) 100vw, 40vw"
               />
               <span className="image-caption">

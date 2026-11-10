@@ -3384,3 +3384,92 @@ html[data-skip-intro="true"] .intro {
   height: 1em;
   display: block;
 }
+/* Macro dental photography: keep the whole mouth visible at every breakpoint. */
+.hero-visual {
+  align-self: center;
+}
+.hero-image-wrap {
+  height: auto;
+  aspect-ratio: 4/3;
+  border-radius: 25% 25% 5px 5px;
+}
+.hero-photo {
+  object-position: center;
+  object-fit: contain;
+}
+.about-care {
+  min-height: 0;
+  aspect-ratio: 4/3;
+}
+.about-care-photo {
+  object-position: center;
+  object-fit: contain;
+}
+.confidence-photo {
+  min-height: 0;
+  aspect-ratio: 4/3;
+  align-self: center;
+}
+.confidence-photo img {
+  height: 100%;
+  top: 0;
+  object-fit: contain;
+  transform: none !important;
+  will-change: auto;
+}
+.treatment-image {
+  aspect-ratio: 1;
+}
+.treatment-image img {
+  object-fit: contain;
+}
+.treatment-card:hover .treatment-image img {
+  transform: none;
+}
+@media (max-width: 700px) {
+  .hero-image-label {
+    bottom: 27px;
+    left: 18px;
+    font-size: 10px;
+  }
+  .hero-image-label strong {
+    font-size: 8px;
+  }
+  .hero-image-label .mini-sun {
+    font-size: 32px;
+  }
+  .hero-sticker {
+    top: 12%;
+    right: -2px;
+    padding: 10px 14px;
+  }
+  .confidence-photo-quote {
+    font-size: 22px;
+    bottom: 30px;
+  }
+  .about-care .about-art-bottom {
+    padding: 0 22px 30px;
+  }
+  .about-care .about-art-bottom span {
+    font-size: 20px;
+  }
+}
+@media (max-width: 350px) {
+  .hero-image-label {
+    font-size: 9px;
+    gap: 7px;
+  }
+  .hero-image-label strong {
+    font-size: 7px;
+  }
+  .hero-image-label .mini-sun {
+    font-size: 25px;
+  }
+  .hero-sticker {
+    font-size: 9px;
+    padding: 8px 11px;
+  }
+  .confidence-photo-quote {
+    font-size: 19px;
+  }
+}

@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { images } from "@/lib/images";
 import "./globals.css";
 import "@fontsource-variable/manrope";
 const siteUrl = process.env.SITE_URL;
@@ -20,9 +21,9 @@ export const metadata: Metadata = {
       ? {
           images: [
             {
-              url: "/images/hero-retrato.webp",
-              width: 1122,
-              height: 1402,
+              url: images.hero.src,
+              width: images.hero.width,
+              height: images.hero.height,
               alt: "Volte a Sorrir Brasil — um novo começo para o seu sorriso",
             },
           ],

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { images } from "@/lib/images";
 import {
   ArrowDown,
   ArrowDownRight,
@@ -141,10 +142,10 @@ export default function Home() {
               <div className="hero-image-wrap">
                 <Image
                   className="hero-photo"
-                  src="/images/hero-retrato.webp"
-                  alt="Retrato ilustrativo de uma mulher adulta sorrindo naturalmente"
-                  width={1122}
-                  height={1402}
+                  src={images.hero}
+                  alt="Imagem ilustrativa de um sorriso natural em detalhe, mostrando somente a boca e os dentes"
+                  quality={90}
+                  placeholder="blur"
                   preload
                   sizes="(max-width: 900px) 90vw, 48vw"
                 />
@@ -199,10 +200,10 @@ export default function Home() {
             <div className="about-art about-care" data-reveal>
               <Image
                 className="about-care-photo"
-                src="/images/cuidado.webp"
-                alt="Imagem ilustrativa de avaliação odontológica, com uma pessoa adulta e mãos enluvadas segurando um espelho dental; não representa as instalações da clínica"
-                width={1122}
-                height={1402}
+                src={images.cuidado}
+                alt="Imagem ilustrativa em detalhe de uma boca durante avaliação com espelho dental, sem mostrar rostos; não representa um caso real da clínica"
+                quality={90}
+                placeholder="blur"
                 sizes="(max-width: 700px) 90vw, 42vw"
                 loading="lazy"
               />
@@ -285,10 +286,10 @@ export default function Home() {
                     aria-label={`Conversar sobre ${t.title.toLowerCase()} pelo WhatsApp`}
                   >
                     <Image
-                      src={`/images/${t.id}.webp`}
+                      src={t.image}
                       alt={t.alt}
-                      width={508}
-                      height={508}
+                      quality={90}
+                      placeholder="blur"
                       loading="lazy"
                       sizes="(max-width: 600px) 90vw, (max-width: 1000px) 45vw, 23vw"
                     />
@@ -340,10 +341,10 @@ export default function Home() {
             </div>
             <div className="confidence-photo">
               <Image
-                src="/images/sorriso-retrato.webp"
-                alt="Retrato ilustrativo de um homem adulto sorrindo em um jardim"
-                width={1122}
-                height={1402}
+                src={images.sorriso}
+                alt="Imagem ilustrativa de uma boca sorrindo, sem mostrar o rosto"
+                quality={90}
+                placeholder="blur"
                 sizes="(max-width: 900px) 100vw, 50vw"
                 loading="lazy"
               />
