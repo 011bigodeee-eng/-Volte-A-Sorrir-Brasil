@@ -230,9 +230,6 @@ export function TreatmentExplorer() {
                 placeholder="blur"
                 sizes="(max-width: 600px) 100vw, 40vw"
               />
-              <span className="image-caption">
-                Imagem ilustrativa • gerada por IA
-              </span>
             </div>
             <div className="explorer-copy" key={`copy-${t.id}`}>
               <span className="small-label">{t.label}</span>

@@ -160,9 +160,6 @@ export default function Home() {
                     <strong>O mesmo sorriso que é só seu.</strong>
                   </span>
                 </div>
-                <span className="hero-photo-credit">
-                  Imagem ilustrativa gerada por IA
-                </span>
               </div>
               <div className="hero-orbit" />
               <span className="hero-side-label">
@@ -215,9 +212,6 @@ export default function Home() {
                 </span>
                 <ArrowDownRight size={48} strokeWidth={1} />
               </div>
-              <span className="about-care-credit">
-                Atendimento ilustrativo • imagem gerada por IA
-              </span>
             </div>
             <div className="about-copy" data-reveal>
               <Eyebrow>Prazer, somos a Volte a Sorrir Brasil</Eyebrow>
@@ -352,9 +346,6 @@ export default function Home() {
                 Os melhores momentos
                 <br />
                 merecem o seu sorriso.
-              </span>
-              <span className="confidence-credit">
-                Imagem ilustrativa gerada por IA
               </span>
             </div>
           </div>
