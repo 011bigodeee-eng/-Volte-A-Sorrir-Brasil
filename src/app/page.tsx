@@ -619,18 +619,13 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="professional-info">
-            {technicalDirector && cro ? (
+          {technicalDirector && cro && (
+            <div className="professional-info">
               <span>
                 Responsável técnico: {technicalDirector} · CRO: {cro}
               </span>
-            ) : (
-              <span>
-                Identificação do responsável técnico e registro profissional:
-                aguardando confirmação.
-              </span>
-            )}
-          </div>
+            </div>
+          )}
           <div className="footer-bottom">
             <span>
               © <CurrentYear initialYear={new Date().getFullYear()} /> Volte a
