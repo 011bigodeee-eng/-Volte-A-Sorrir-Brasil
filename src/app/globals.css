@@ -922,6 +922,12 @@ h3 {
 }
 .explorer-image {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-width: 0;
+  overflow: hidden;
+  isolation: isolate;
   align-self: stretch;
   background: #e9f0f5;
   min-height: 380px;
@@ -931,18 +937,20 @@ h3 {
   height: 100%;
   object-fit: cover;
   position: absolute;
+  inset: 0;
   animation: panel-enter 0.45s ease both;
 }
 .image-caption {
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-  right: 0;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  margin-top: auto;
   text-align: center;
-  font-size: 7px;
+  font-size: 10px;
+  line-height: 1.5;
   color: #263c49;
   background: #ffffffb0;
-  padding: 3px 0;
+  padding: 6px 10px;
 }
 .explorer-copy {
   padding: 38px 28px;
