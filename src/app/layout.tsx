@@ -39,7 +39,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   themeColor: "#06448C",
 };
-const introScript = `try { if (sessionStorage.getItem('vas-intro') || matchMedia('(prefers-reduced-motion: reduce)').matches || location.hash) document.documentElement.dataset.skipIntro='true'; } catch { document.documentElement.dataset.skipIntro='true'; }`;
+const introScript = `try { if (sessionStorage.getItem('vas-intro-v2') || matchMedia('(prefers-reduced-motion: reduce)').matches || location.hash) document.documentElement.dataset.skipIntro='true'; } catch { document.documentElement.dataset.skipIntro='true'; }`;
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {

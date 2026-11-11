@@ -42,7 +42,7 @@ npm start -- --port 3000
 - `src/app/globals.css`: identidade, composição editorial e adaptações mobile.
 - `public/images/`: recursos locais, com origem descrita em `ASSETS.md`.
 
-A abertura dura aproximadamente 1,8 s no desktop e 1,1 s no celular. Não se repete na sessão; links com âncora e a preferência por movimento reduzido a dispensam. As animações não ocultam conteúdo se JavaScript estiver indisponível. O Google Maps só é solicitado depois de clicar em “Carregar mapa”.
+A abertura editorial dura aproximadamente 2,1 s no desktop e 1,55 s no celular. Usa uma curva dourada e uma cortina curva para revelar a hero. Não se repete na sessão; links com âncora e a preferência por movimento reduzido a dispensam. As animações não ocultam conteúdo se JavaScript estiver indisponível. O Google Maps só é solicitado depois de clicar em “Carregar mapa”.
 
 ## Preparação para publicação
 

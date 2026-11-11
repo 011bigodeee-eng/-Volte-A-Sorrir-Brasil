@@ -289,12 +289,14 @@ test("vídeo ilustrativo reproduz, expande em diálogo e pausa ao fechar", async
   );
 });
 
-test("rolagem revela cards, desloca faixa diagonal e expande o quadro do vídeo", async ({
+test("rolagem revela cards e expande o vídeo sem a faixa diagonal", async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.addInitScript(() => sessionStorage.setItem("vas-intro", "seen"));
+  await page.addInitScript(() =>
+    sessionStorage.setItem("vas-intro-v2", "seen"),
+  );
   await page.goto("/");
   const card = page.locator(".treatment-card").first();
   await expect(card).toHaveClass(/will-reveal/);
@@ -304,16 +306,7 @@ test("rolagem revela cards, desloca faixa diagonal e expande o quadro do vídeo"
   );
   await card.scrollIntoViewIfNeeded();
   await expect(card).toHaveClass(/is-visible/);
-  await page.locator(".diagonal-band").scrollIntoViewIfNeeded();
-  await expect
-    .poll(() =>
-      page
-        .locator(".diagonal-band")
-        .evaluate((el) =>
-          (el as HTMLElement).style.getPropertyValue("--diagonal-x"),
-        ),
-    )
-    .not.toBe("");
+  await expect(page.locator(".diagonal-band")).toHaveCount(0);
   await page.evaluate(() => {
     const el = document.querySelector(".cinema-stage")!;
     window.scrollTo({
@@ -336,7 +329,9 @@ test("mouse inclina o card e revela lupa; movimento reduzido desativa os efeitos
 }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.addInitScript(() => sessionStorage.setItem("vas-intro", "seen"));
+  await page.addInitScript(() =>
+    sessionStorage.setItem("vas-intro-v2", "seen"),
+  );
   await page.goto("/");
   const card = page.locator(".treatment-card").first();
   await card.scrollIntoViewIfNeeded();

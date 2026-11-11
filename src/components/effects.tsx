@@ -10,7 +10,7 @@ import { Appointment, Eyebrow } from "./ui";
 export function MotionEffects() {
   useEffect(() => {
     try {
-      sessionStorage.setItem("vas-intro", "seen");
+      sessionStorage.setItem("vas-intro-v2", "seen");
     } catch {}
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const pointer = window.matchMedia("(hover: hover) and (pointer: fine)");
@@ -85,31 +85,10 @@ export function MotionEffects() {
             });
           });
       }
-      const diagonal = document.querySelector<HTMLElement>(".diagonal-band");
       const stage = document.querySelector<HTMLElement>(".cinema-stage");
       let scrollFrame = 0;
       const renderScroll = () => {
         scrollFrame = 0;
-        if (diagonal) {
-          const rect = diagonal.getBoundingClientRect();
-          if (rect.bottom > 0 && rect.top < innerHeight) {
-            const progress = Math.max(
-              0,
-              Math.min(
-                1,
-                (innerHeight - rect.top) / (innerHeight + rect.height),
-              ),
-            );
-            diagonal.style.setProperty(
-              "--diagonal-x",
-              `${(progress - 0.5) * -150}px`,
-            );
-            diagonal.style.setProperty(
-              "--diagonal-y",
-              `${(progress - 0.5) * 22}px`,
-            );
-          }
-        }
         if (stage) {
           const rect = stage.getBoundingClientRect();
           const progress = Math.max(
@@ -139,8 +118,6 @@ export function MotionEffects() {
           el.classList.remove("will-reveal");
           el.style.removeProperty("--reveal-delay");
         });
-        diagonal?.style.removeProperty("--diagonal-x");
-        diagonal?.style.removeProperty("--diagonal-y");
         stage?.style.removeProperty("--cinema-scale");
         stage?.style.removeProperty("--cinema-radius");
       };
@@ -155,21 +132,6 @@ export function MotionEffects() {
     };
   }, []);
   return null;
-}
-
-export function DiagonalGallery() {
-  return (
-    <div className="diagonal-band" aria-hidden="true">
-      <div className="diagonal-track">
-        {Array.from({ length: 4 }, (_, i) => (
-          <span key={i}>
-            Cuidado para o seu sorriso<span className="diagonal-star">✦</span>
-            Novos começos<span className="diagonal-star">✦</span>
-          </span>
-        ))}
-      </div>
-    </div>
-  );
 }
 
 export function CinematicExperience() {

@@ -1,10 +1,6 @@
 import Image from "next/image";
 import { images } from "@/lib/images";
-import {
-  MotionEffects,
-  CinematicExperience,
-  DiagonalGallery,
-} from "@/components/effects";
+import { MotionEffects, CinematicExperience } from "@/components/effects";
 import {
   ArrowDown,
   ArrowDownRight,
@@ -77,12 +73,39 @@ export default function Home() {
         }}
       />
       <div className="intro" aria-hidden="true">
-        <div className="intro-glow" />
-        <div className="intro-brand">
-          <Brand light />
-          <span>Um novo começo para o seu sorriso.</span>
+        <div className="intro-grain" />
+        <div className="intro-frame">
+          <span>BURITICUPU, MARANHÃO</span>
+          <span>UM NOVO COMEÇO</span>
         </div>
-        <div className="intro-line" />
+        <svg
+          className="intro-curves"
+          viewBox="0 0 1440 900"
+          preserveAspectRatio="xMidYMid slice"
+          fill="none"
+        >
+          <path
+            className="intro-curve-echo"
+            d="M-150 200C220 900 1230 810 1590 100"
+          />
+          <path
+            className="intro-curve-gold"
+            pathLength="1"
+            d="M-150 150C220 850 1230 760 1590 50"
+          />
+        </svg>
+        <div className="intro-editorial">
+          <span className="intro-text-mask">
+            <span>Todo sorriso</span>
+          </span>
+          <span className="intro-text-mask">
+            <em>merece cuidado.</em>
+          </span>
+        </div>
+        <div className="intro-signature">
+          <Brand light />
+          <span className="intro-signature-rule" />
+        </div>
       </div>
       <a className="skip-link" href="#conteudo">
         Ir para o conteúdo
@@ -373,7 +396,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <DiagonalGallery />
         <CinematicExperience />
         <TreatmentExplorer />
         <section className="section orientation-section">

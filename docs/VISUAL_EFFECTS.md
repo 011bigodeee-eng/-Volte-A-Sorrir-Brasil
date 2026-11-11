@@ -8,7 +8,7 @@ A referência foi adaptada à identidade da clínica e às imagens de boca e tra
 | Imagem em 3D         | Inclinação do conjunto visual da hero conforme o ponteiro, com camadas em profundidades diferentes.     |
 | Efeito líquido       | Formas suaves com gradientes e deformação animada no fundo da hero.                                     |
 | Card minimalista     | Superfícies claras, bordas finas, sombra leve e realce localizado.                                      |
-| Scroll diagonal      | Faixa decorativa inclinada que se desloca com a rolagem normal, sem capturar a navegação.               |
+| Faixa diagonal | Removida a pedido do usuário; não há faixa nem movimento diagonal. |
 | Vidro                | Painel de agendamento translúcido, com desfoque e borda luminosa. Não apresenta preços não confirmados. |
 | Vídeo expansível     | Quadro cresce ao rolar no desktop; o botão abre um player maior em diálogo acessível.                   |
 | Sobreposição         | Painel de vidro sobre o quadro do vídeo e placa flutuante sobre a hero.                                 |
@@ -25,4 +25,8 @@ A preferência `prefers-reduced-motion` desativa a revelação animada, deforma�
 
 ## Validação
 
-Compilação de produção e TypeScript aprovados. Os 16 testes de regressão verificaram layout nas sete larguras, imagens, contatos, navegação, abertura e acessibilidade automatizada. Três testes adicionais verificaram reprodução H.264 real, dimensões/duração do vídeo, fechamento por Escape, pausa e foco, expansão ao rolar, movimento diagonal, inclinação, lupa e mudança dinâmica para movimento reduzido. As capturas desktop, mobile e do player foram revisadas.
+Compilação de produção e TypeScript aprovados. Os 16 testes de regressão verificaram layout nas sete larguras, imagens, contatos, navegação, abertura e acessibilidade automatizada. Três testes adicionais verificaram reprodução H.264 real, dimensões/duração do vídeo, fechamento por Escape, pausa e foco, expansão ao rolar, remoção da faixa diagonal, inclinação, lupa e mudança dinâmica para movimento reduzido. As capturas desktop, mobile e do player foram revisadas.
+
+## Abertura editorial
+
+A abertura usa a logomarca original, composição tipográfica em duas linhas, desenho progressivo de uma curva dourada e saída por uma cortina curva. A hero entra de forma sincronizada com a saída. Duração total: 2,1 s no desktop e 1,55 s no mobile. A versão `vas-intro-v2` é registrada na sessão: a nova abertura aparece uma vez, inclusive para quem viu a versão antiga, e não se repete ao recarregar. Âncoras diretas e movimento reduzido dispensam a abertura. Tudo se conclui por CSS mesmo se a hidratação falhar.
