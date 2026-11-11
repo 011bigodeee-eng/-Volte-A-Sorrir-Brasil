@@ -15,6 +15,7 @@ for (const width of [320, 375, 390, 430, 768, 1024, 1440]) {
     for (const id of [
       "clinica",
       "tratamentos",
+      "experiencia",
       "explorar",
       "duvidas",
       "contato",
@@ -190,8 +191,27 @@ test("abertura antecede a página, termina e não se repete na sessão", async (
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
+  // Observe the opening before navigation completes: image loading can outlast it.
+  await page.addInitScript(() => {
+    document.addEventListener("animationstart", (event) => {
+      const element = event.target as HTMLElement;
+      if (element.classList?.contains("intro")) {
+        const style = getComputedStyle(element);
+        Object.assign(window, {
+          __introSeen:
+            style.visibility === "visible" && Number(style.opacity) > 0,
+        });
+      }
+    });
+  });
   await page.goto("/");
-  await expect(page.locator(".intro")).toBeVisible();
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () => (window as unknown as { __introSeen?: boolean }).__introSeen,
+      ),
+    )
+    .toBe(true);
   await expect(page.locator(".intro")).not.toBeVisible({ timeout: 4000 });
   await page.reload();
   await expect(page.locator(".intro")).not.toBeVisible();
@@ -225,4 +245,125 @@ test("capturas de revisão desktop e mobile", async ({ page }) => {
       fullPage: true,
     });
   }
+});
+
+test("vídeo ilustrativo reproduz, expande em diálogo e pausa ao fechar", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const play = page.getByRole("button", {
+    name: "Reproduzir vídeo ilustrativo",
+  });
+  await play.click();
+  const dialog = page.getByRole("dialog", {
+    name: "Um sorriso, novas possibilidades",
+  });
+  await expect(dialog).toBeVisible();
+  const video = page.locator(".cinema-dialog video");
+  await expect
+    .poll(
+      () =>
+        video.evaluate((v) => ({
+          time: (v as HTMLVideoElement).currentTime,
+          error: (v as HTMLVideoElement).error?.code ?? null,
+        })),
+      { timeout: 15000 },
+    )
+    .toMatchObject({ error: null });
+  await expect
+    .poll(() => video.evaluate((v) => (v as HTMLVideoElement).currentTime), {
+      timeout: 15000,
+    })
+    .toBeGreaterThan(0.1);
+  expect(await video.evaluate((v) => (v as HTMLVideoElement).videoWidth)).toBe(
+    1280,
+  );
+  expect(
+    await video.evaluate((v) => (v as HTMLVideoElement).duration),
+  ).toBeCloseTo(14.5, 0);
+  await page.keyboard.press("Escape");
+  await expect(dialog).not.toBeVisible();
+  await expect(play).toBeFocused();
+  expect(await video.evaluate((v) => (v as HTMLVideoElement).paused)).toBe(
+    true,
+  );
+});
+
+test("rolagem revela cards, desloca faixa diagonal e expande o quadro do vídeo", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.addInitScript(() => sessionStorage.setItem("vas-intro", "seen"));
+  await page.goto("/");
+  const card = page.locator(".treatment-card").first();
+  await expect(card).toHaveClass(/will-reveal/);
+  const stage = page.locator(".cinema-stage");
+  const initial = await stage.evaluate((el) =>
+    Number((el as HTMLElement).style.getPropertyValue("--cinema-scale")),
+  );
+  await card.scrollIntoViewIfNeeded();
+  await expect(card).toHaveClass(/is-visible/);
+  await page.locator(".diagonal-band").scrollIntoViewIfNeeded();
+  await expect
+    .poll(() =>
+      page
+        .locator(".diagonal-band")
+        .evaluate((el) =>
+          (el as HTMLElement).style.getPropertyValue("--diagonal-x"),
+        ),
+    )
+    .not.toBe("");
+  await page.evaluate(() => {
+    const el = document.querySelector(".cinema-stage")!;
+    window.scrollTo({
+      top: scrollY + el.getBoundingClientRect().top - innerHeight * 0.2,
+      behavior: "instant",
+    });
+  });
+  await expect
+    .poll(() =>
+      stage.evaluate((el) =>
+        Number((el as HTMLElement).style.getPropertyValue("--cinema-scale")),
+      ),
+    )
+    .toBeGreaterThan(initial);
+  await expect(stage).toHaveCSS("overflow", "visible");
+});
+
+test("mouse inclina o card e revela lupa; movimento reduzido desativa os efeitos", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.addInitScript(() => sessionStorage.setItem("vas-intro", "seen"));
+  await page.goto("/");
+  const card = page.locator(".treatment-card").first();
+  await card.scrollIntoViewIfNeeded();
+  await expect(card).toHaveClass(/is-visible/);
+  const image = card.locator(".treatment-image");
+  const box = (await image.boundingBox())!;
+  await page.mouse.move(box.x + box.width * 0.7, box.y + box.height * 0.6);
+  await expect
+    .poll(() =>
+      card.evaluate((el) =>
+        (el as HTMLElement).style.getPropertyValue("--tilt-y"),
+      ),
+    )
+    .not.toBe("");
+  await expect(card.locator(".detail-lens")).toHaveCSS("opacity", "1");
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect
+    .poll(() =>
+      card.evaluate((el) =>
+        (el as HTMLElement).style.getPropertyValue("--tilt-y"),
+      ),
+    )
+    .toBe("");
+  await expect(card.locator(".detail-lens")).toHaveCSS("display", "none");
+  await expect(page.locator(".liquid-scene>span").first()).toHaveCSS(
+    "animation-name",
+    "none",
+  );
+  await expect(page.locator(".cinema-frame")).toHaveCSS("transform", "none");
 });

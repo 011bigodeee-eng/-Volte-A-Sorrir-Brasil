@@ -36,7 +36,8 @@ npm start -- --port 3000
 
 - `src/lib/clinic.ts`: informações oficiais, mensagens de WhatsApp, tratamentos e FAQ.
 - `src/app/page.tsx`: seções, identificação profissional e JSON-LD sem avaliações inventadas.
-- `src/components/interactive.tsx`: menu com diálogo nativo, abas acessíveis, accordion, mapa sob demanda e efeitos de movimento.
+- `src/components/interactive.tsx`: menu com diálogo nativo, abas acessíveis, accordion e mapa sob demanda.
+- `src/components/effects.tsx`: efeitos de rolagem, profundidade, lupa e vídeo expansível; veja `docs/VISUAL_EFFECTS.md`.
 - `src/components/ui.tsx`: marca, CTAs e contatos fixos.
 - `src/app/globals.css`: identidade, composição editorial e adaptações mobile.
 - `public/images/`: recursos locais, com origem descrita em `ASSETS.md`.

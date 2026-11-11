@@ -1,6 +1,11 @@
 import Image from "next/image";
 import { images } from "@/lib/images";
 import {
+  MotionEffects,
+  CinematicExperience,
+  DiagonalGallery,
+} from "@/components/effects";
+import {
   ArrowDown,
   ArrowDownRight,
   ArrowUpRight,
@@ -14,7 +19,6 @@ import {
 } from "lucide-react";
 import {
   Header,
-  MotionEffects,
   TreatmentExplorer,
   FAQ,
   CurrentYear,
@@ -99,6 +103,10 @@ export default function Home() {
       <Header />
       <main id="conteudo">
         <section className="hero" id="inicio">
+          <div className="liquid-scene" aria-hidden="true">
+            <span />
+            <span />
+          </div>
           <div className="container hero-grid">
             <div className="hero-copy">
               <Eyebrow>Odontologia em Buriticupu, Maranhão</Eyebrow>
@@ -138,7 +146,7 @@ export default function Home() {
                 </span>
               </div>
             </div>
-            <div className="hero-visual">
+            <div className="hero-visual" data-tilt>
               <div className="hero-image-wrap">
                 <Image
                   className="hero-photo"
@@ -271,9 +279,15 @@ export default function Home() {
             </div>
             <div className="treatment-grid">
               {treatments.map((t, i) => (
-                <article className="treatment-card" key={t.id} data-reveal>
+                <article
+                  className="treatment-card"
+                  key={t.id}
+                  data-reveal
+                  data-tilt
+                >
                   <a
                     className="treatment-image"
+                    data-mouse-reveal
                     href={whatsappUrl(t.message)}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -287,6 +301,15 @@ export default function Home() {
                       loading="lazy"
                       sizes="(max-width: 600px) 90vw, (max-width: 1000px) 45vw, 23vw"
                     />
+                    <span className="detail-lens" aria-hidden="true">
+                      <Image
+                        src={t.image}
+                        alt=""
+                        quality={90}
+                        sizes="(max-width: 600px) 90vw, (max-width: 1000px) 45vw, 23vw"
+                        loading="lazy"
+                      />
+                    </span>
                     <span className="treatment-number">0{i + 1}</span>
                     <span className="treatment-image-arrow">
                       <ArrowUpRight size={22} />
@@ -350,6 +373,8 @@ export default function Home() {
             </div>
           </div>
         </section>
+        <DiagonalGallery />
+        <CinematicExperience />
         <TreatmentExplorer />
         <section className="section orientation-section">
           <div className="container">
@@ -392,7 +417,12 @@ export default function Home() {
                   link: "Confira os horários",
                 },
               ].map(({ Icon, title, text, href, link }) => (
-                <div className="orientation-card" key={title} data-reveal>
+                <div
+                  className="orientation-card"
+                  key={title}
+                  data-reveal
+                  data-tilt
+                >
                   <span className="orientation-icon">
                     <Icon size={26} strokeWidth={1.4} />
                   </span>

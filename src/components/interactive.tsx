@@ -92,59 +92,6 @@ export function Header() {
     </header>
   );
 }
-export function MotionEffects() {
-  useEffect(() => {
-    try {
-      sessionStorage.setItem("vas-intro", "seen");
-    } catch {}
-    const reduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    if (reduced) return;
-    const elements = document.querySelectorAll("[data-reveal]");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.08 },
-    );
-    elements.forEach((element) => {
-      const box = element.getBoundingClientRect();
-      if (box.top > innerHeight) {
-        element.classList.add("will-reveal");
-        observer.observe(element);
-      }
-    });
-    const parallax = document.querySelector<HTMLElement>(".confidence-photo");
-    let scheduled = false;
-    const scroll = () => {
-      if (scheduled || innerWidth < 901) return;
-      scheduled = true;
-      requestAnimationFrame(() => {
-        if (parallax) {
-          const bounds = parallax.getBoundingClientRect();
-          if (bounds.bottom > 0 && bounds.top < innerHeight)
-            parallax.style.setProperty(
-              "--parallax",
-              `${Math.max(-22, Math.min(22, (bounds.top - innerHeight / 2) * 0.04))}px`,
-            );
-        }
-        scheduled = false;
-      });
-    };
-    window.addEventListener("scroll", scroll, { passive: true });
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("scroll", scroll);
-    };
-  }, []);
-  return null;
-}
 export function TreatmentExplorer() {
   const [selected, setSelected] = useState(0);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);

@@ -35,3 +35,7 @@ Os recursos são importados estaticamente em `src/lib/images.ts`: o Next.js lê 
 - A família serifada usa Georgia ou a alternativa serifada local do sistema.
 
 Não são utilizadas URLs remotas de fotografias ou fontes.
+
+## Sequência de vídeo ilustrativa
+
+`public/media/sorrisos-ilustrativos.mp4` foi renderizado localmente com FFmpeg a partir das imagens de sorriso, implante, prótese e ortodontia já listadas. Tem 14,5 s, resolução 1280 × 720, codec H.264 e não contém áudio. As cenas são conectadas por transições suaves. Não representa filmagem real de pacientes, profissionais ou instalações. As legendas descritivas estão em `sorrisos-ilustrativos.vtt`; a página identifica a natureza ilustrativa da sequência.
