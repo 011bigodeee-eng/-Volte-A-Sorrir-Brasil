@@ -15,6 +15,7 @@ for (const width of [320, 375, 390, 430, 768, 1024, 1440]) {
     for (const id of [
       "clinica",
       "tratamentos",
+      "implantes",
       "experiencia",
       "explorar",
       "duvidas",
@@ -371,4 +372,23 @@ test("mouse inclina o card e revela lupa; movimento reduzido desativa os efeitos
     "none",
   );
   await expect(page.locator(".cinema-frame")).toHaveCSS("transform", "none");
+});
+
+
+test("seção de implantes explica etapas, abre dúvidas pelo teclado e direciona o agendamento", async ({ page }) => {
+  await page.goto("/#implantes");
+  const section = page.locator("section#implantes");
+  await expect(section.getByRole("heading", { level: 2 })).toContainText("implante dentário");
+  await expect(section.getByRole("listitem")).toHaveCount(4);
+  const question = section.locator("summary").filter({ hasText: "Quanto tempo leva o tratamento?" });
+  await question.focus();
+  await page.keyboard.press("Enter");
+  await expect(section.getByText(/Somente a avaliação permite estimar o tempo/)).toBeVisible();
+  await page.keyboard.press("Enter");
+  await expect(section.getByText(/Somente a avaliação permite estimar o tempo/)).not.toBeVisible();
+  const link = section.getByRole("link", { name: "Agendar avaliação para implantes" });
+  const url = new URL((await link.getAttribute("href"))!);
+  expect(url.hostname).toBe("wa.me");
+  expect(url.pathname).toBe("/5598984278547");
+  expect(url.searchParams.get("text")).toBe("Olá! Gostaria de agendar uma avaliação para implantes dentários.");
 });

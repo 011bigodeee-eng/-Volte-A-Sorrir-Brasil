@@ -4272,3 +4272,27 @@ html:not([data-skip-intro="true"]) .hero-photo {
 .location-card > .text-link {
   font-size: 14px;
 }
+
+.implants-section { background: var(--soft); }
+.implants-intro { max-width: 800px; margin-bottom: 32px; }
+.implants-intro h3, .implants-questions > h3 { font-size: 24px; margin-bottom: 16px; }
+.implants-intro p, .implants-steps p, .implants-questions p { color: var(--muted); line-height: 1.85; }
+.implants-steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; list-style: none; padding: 0; margin: 0 0 44px; }
+.implants-steps li { background: var(--paper); padding: 26px; border: 1px solid var(--line); border-radius: 8px; }
+.implants-step-number { display: inline-block; color: var(--blue); font-weight: 800; border-bottom: 3px solid var(--yellow); margin-bottom: 20px; }
+.implants-steps h3 { font-size: 18px; line-height: 1.4; margin-bottom: 14px; }
+.implants-steps p { font-size: 14px; }
+.implants-questions { max-width: 850px; }
+.implants-questions details { border-bottom: 1px solid var(--line); padding: 18px 0; }
+.implants-questions summary { cursor: pointer; font-weight: 700; font-size: 16px; }
+.implants-questions details p { padding-top: 14px; }
+.implants-questions summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 5px; }
+.implants-appointment { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; margin-top: 32px; }
+.implants-appointment p { flex: 1 1 300px; color: var(--muted); font-size: 13px; max-width: 620px; }
+.implants-appointment .button { max-width: 100%; white-space: normal; }
+@media (max-width: 1050px) { .implants-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) {
+  .implants-steps { grid-template-columns: 1fr; }
+  .implants-steps li { padding: 24px; }
+  .implants-appointment .button { width: 100%; font-size: 13px; }
+}

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Implants } from "@/components/implants";
 import { images } from "@/lib/images";
 import { MotionEffects, CinematicExperience } from "@/components/effects";
 import {
@@ -360,6 +361,7 @@ export default function Home() {
             </p>
           </div>
         </section>
+        <Implants />
         <section className="confidence-section">
           <div className="container confidence-grid">
             <div className="confidence-copy" data-reveal>
