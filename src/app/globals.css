@@ -4296,3 +4296,38 @@ html:not([data-skip-intro="true"]) .hero-photo {
   .implants-steps li { padding: 24px; }
   .implants-appointment .button { width: 100%; font-size: 13px; }
 }
+
+.implants-feature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+  margin-bottom: 40px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--navy);
+}
+.implants-visual { position: relative; margin: 0; background: #e6e5e0; }
+.implants-visual > img { width: 100%; height: 100%; object-fit: contain; }
+.implants-visual figcaption {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  width: fit-content;
+  padding: 6px 12px;
+  background: var(--paper);
+  color: var(--ink);
+  border-radius: 20px;
+  font-size: 11px;
+}
+.implants-feature .implants-intro { padding: clamp(28px, 4vw, 60px); margin: 0; align-self: center; }
+.implants-feature-label { color: var(--yellow); font-size: 11px; letter-spacing: 0.16em; font-weight: 800; }
+.implants-feature .implants-intro h3 { color: white; font-size: clamp(28px, 3vw, 42px); line-height: 1.18; margin: 22px 0; }
+.implants-feature .implants-intro p { color: #e1eaf2; font-size: 15px; }
+.implants-feature-link { display: inline-flex; align-items: center; gap: 16px; color: var(--yellow); font-size: 14px; font-weight: 700; margin-top: 28px; }
+.implants-feature-link span { font-size: 24px; }
+.implants-feature-link:focus-visible { outline: 2px solid var(--yellow); outline-offset: 5px; }
+@media (max-width: 760px) {
+  .implants-feature { grid-template-columns: 1fr; }
+  .implants-visual { aspect-ratio: 1; }
+}

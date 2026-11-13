@@ -1,4 +1,6 @@
 import { Appointment, Eyebrow } from "./ui";
+import Image from "next/image";
+import { images } from "@/lib/images";
 
 const steps = [
   ["Avaliação", "Conversamos sobre suas necessidades e avaliamos a saúde bucal, o histórico de saúde e as condições do osso. Exames podem ser solicitados."],
@@ -24,11 +26,26 @@ export function Implants() {
           </div>
           <p>Informação para dar o próximo passo com mais clareza, desde a primeira conversa até os cuidados de manutenção.</p>
         </div>
-        <div className="implants-intro">
+        <div className="implants-feature">
+          <figure className="implants-visual">
+            <Image
+              src={images.implantes}
+              alt="Ilustração de um implante dentário em corte, com coroa, conexão e estrutura de suporte no osso"
+              quality={90}
+              placeholder="blur"
+              sizes="(max-width: 760px) 90vw, 45vw"
+              loading="lazy"
+            />
+            <figcaption>Ilustração educativa gerada por IA.</figcaption>
+          </figure>
+          <div className="implants-intro">
+          <span className="implants-feature-label">IMPLANTES DENTÁRIOS</span>
           <h3>Uma base para repor dentes perdidos</h3>
           <p>O implante é uma estrutura instalada no osso que serve de suporte para uma coroa ou prótese. Pode ser uma opção para substituir um ou mais dentes ausentes e contribuir para a mastigação e a aparência do sorriso. A indicação depende da saúde bucal e geral, das condições ósseas e das necessidades de cada pessoa.</p>
+          <a className="implants-feature-link" href="#etapas-implantes">Conheça as etapas do tratamento <span aria-hidden="true">↓</span></a>
+          </div>
         </div>
-        <ol className="implants-steps" aria-label="Etapas do tratamento com implantes">
+        <ol className="implants-steps" id="etapas-implantes" aria-label="Etapas do tratamento com implantes">
           {steps.map(([title, text], index) => (
             <li key={title}>
               <span className="implants-step-number" aria-hidden="true">0{index + 1}</span>
