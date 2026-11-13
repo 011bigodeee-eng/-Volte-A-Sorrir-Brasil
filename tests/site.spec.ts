@@ -127,6 +127,16 @@ test("contatos e metadados usam dados confirmados", async ({
   request,
 }) => {
   await page.goto("/");
+  for (const [city, address, phone] of [
+    ["Araguatins", "Rua Tenente Siqueira Campos, Nº 745 - Centro", "+5563999981757"],
+    ["Augustinópolis", "Rua Goiás, Nº 1010 - Centro", "+5563999412311"],
+  ]) {
+    const unit = page.locator(".location-card").filter({ hasText: city });
+    await expect(unit).toContainText(address);
+    await expect(unit.locator('a[href^="tel:"]')).toHaveAttribute("href", `tel:${phone}`);
+    const map = new URL((await unit.getByRole("link", { name: /Como chegar/ }).getAttribute("href"))!);
+    expect(map.searchParams.get("query")).toBe(`${address}, ${city}, Tocantins`);
+  }
   const links = await page
     .locator('a[href^="https://wa.me/"]')
     .evaluateAll((els) => els.map((el) => el.getAttribute("href")));

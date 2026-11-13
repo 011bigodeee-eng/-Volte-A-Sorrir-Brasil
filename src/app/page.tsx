@@ -27,7 +27,7 @@ import {
   WhatsAppFloat,
   Starburst,
 } from "@/components/ui";
-import { clinic, treatments, whatsappUrl } from "@/lib/clinic";
+import { additionalLocations, clinic, treatments, whatsappUrl } from "@/lib/clinic";
 
 export default function Home() {
   const technicalDirector = process.env.NEXT_PUBLIC_TECHNICAL_DIRECTOR;
@@ -519,7 +519,7 @@ export default function Home() {
                 </h2>
               </div>
               <p>
-                Estamos no Centro de Buriticupu.
+                Estamos em Buriticupu, Araguatins e Augustinópolis.
                 <br />
                 Será um prazer conversar com você.
               </p>
@@ -591,6 +591,31 @@ export default function Home() {
               <div data-reveal>
                 <Map />
               </div>
+            </div>
+            <div className="additional-locations">
+              {additionalLocations.map((location) => (
+                <article className="location-card" key={location.city}>
+                  <div className="contact-block">
+                    <MapPin size={21} aria-hidden="true" />
+                    <div>
+                      <span className="small-label">NOSSAS UNIDADES</span>
+                      <h3>{location.city}, {location.state}</h3>
+                      <p>{location.address}</p>
+                      <a
+                        className="text-link"
+                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${location.address}, ${location.city}, ${location.state}`)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Como chegar <ArrowUpRight size={17} />
+                      </a>
+                    </div>
+                  </div>
+                  <a className="text-link" href={`tel:${location.telephone}`}>
+                    Ligar: {location.phone}
+                  </a>
+                </article>
+              ))}
             </div>
           </div>
         </section>

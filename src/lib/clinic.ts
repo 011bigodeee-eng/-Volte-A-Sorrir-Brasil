@@ -9,6 +9,23 @@ export const clinic = {
   instagram: "https://www.instagram.com/volteasorrirbrasil/",
   mapQuery: "Rua Davi Alves Silva, Centro, Buriticupu, Maranhão",
 };
+export const additionalLocations = [
+  {
+    city: "Araguatins",
+    state: "Tocantins",
+    address: "Rua Tenente Siqueira Campos, Nº 745 - Centro",
+    phone: "(63) 99998-1757",
+    telephone: "+5563999981757",
+  },
+  {
+    city: "Augustinópolis",
+    state: "Tocantins",
+    address: "Rua Goiás, Nº 1010 - Centro",
+    phone: "(63) 99941-2311",
+    telephone: "+5563999412311",
+  },
+];
+
 export const appointmentMessage =
   "Olá! Gostaria de agendar uma avaliação odontológica.";
 export function whatsappUrl(message = appointmentMessage) {
