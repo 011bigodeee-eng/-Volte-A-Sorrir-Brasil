@@ -301,7 +301,7 @@ export default function Home() {
               </div>
             </div>
             <div className="treatment-grid">
-              {treatments.map((t, i) => (
+              {treatments.filter((t) => t.id !== "proteses").map((t, i) => (
                 <article
                   className="treatment-card"
                   key={t.id}
